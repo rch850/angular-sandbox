@@ -1,0 +1,12 @@
+<form [formGroup]="myForm">
+  <div formArrayName="members">
+    <div
+      *ngFor="let member of members.controls; let i=index"
+      [formGroupName]="i"
+    >
+      <label>
+        名前: <input formControlName="name">
+      </label>
+    </div>
+  </div>
+</form>

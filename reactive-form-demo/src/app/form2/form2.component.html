@@ -1,0 +1,25 @@
+<a href="https://angular.io/api/forms/SelectControlValueAccessor">SelectControlValueAccessor</a>
+
+<form [formGroup]="myForm">
+  <div formArrayName="members">
+    <div
+      *ngFor="let member of members.controls; let i=index"
+      [formGroupName]="i"
+    >
+      <label>
+        名前:
+        <select formControlName="name" (change)="onNameChange(i)">
+          <option *ngFor="let member of memberOptions[i]" [ngValue]="member">
+            {{ member.name }}
+          </option>
+        </select>
+      </label>
+      <div formArrayName="files">
+        <div *ngFor="let file of member.get('files').controls; let j=index">
+          <input type="file" [formControlName]="j" (change)="onFileChange(file)">
+        </div>
+      </div>
+      {{ member.get('name').value.grade }}年生
+    </div>
+  </div>
+</form>
