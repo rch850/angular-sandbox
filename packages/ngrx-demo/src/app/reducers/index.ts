@@ -9,7 +9,7 @@ import { environment } from '../../environments/environment';
 import { counterReducer } from '../counter.reducer';
 
 export interface State {
-
+  count: number
 }
 
 export const reducers: ActionReducerMap<State> = {
@@ -18,3 +18,5 @@ export const reducers: ActionReducerMap<State> = {
 
 
 export const metaReducers: MetaReducer<State>[] = !environment.production ? [] : [];
+
+export const selectCount = (state: State) => state.count
