@@ -135,5 +135,8 @@
       }
     }
   },
-  "defaultProject": "reactive-form-demo"
+  "defaultProject": "reactive-form-demo",
+  "cli": {
+    "packageManager": "yarn"
+  }
 }
