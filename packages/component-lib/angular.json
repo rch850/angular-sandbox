@@ -171,5 +171,8 @@
       }
     }
   },
-  "defaultProject": "component-lib"
+  "defaultProject": "component-lib",
+  "cli": {
+    "packageManager": "yarn"
+  }
 }
