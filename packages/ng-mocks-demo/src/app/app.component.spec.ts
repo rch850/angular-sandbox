@@ -1,5 +1,6 @@
 import { TestBed, waitForAsync } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { MyServiceService } from './my-service.service';
 
 describe('AppComponent', () => {
   beforeEach(waitForAsync(() => {
@@ -17,15 +18,11 @@ describe('AppComponent', () => {
   });
 
   it(`should have as title 'ng-mocks-demo'`, () => {
+    const myService = TestBed.inject(MyServiceService)
+    spyOn(myService, 'sum').and.callFake((a, b) => a - b)
+
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('ng-mocks-demo');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('ng-mocks-demo app is running!');
+    expect(app.title).toEqual('ng-mocks-demo-3');
   });
 });
