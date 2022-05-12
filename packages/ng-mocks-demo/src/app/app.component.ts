@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { MyServiceService } from './my-service.service';
 
 @Component({
   selector: 'app-root',
@@ -7,9 +6,7 @@ import { MyServiceService } from './my-service.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = `ng-mocks-demo-${this.myService.sum(1, 2)}`;
+  title = `ng-mocks-demo-3`;
 
-  constructor(
-    private myService: MyServiceService
-  ) {}
+  constructor() {}
 }

@@ -1,28 +1,79 @@
 import { TestBed, waitForAsync } from '@angular/core/testing';
+import { MockBuilder, MockComponent, ngMocks } from 'ng-mocks';
 import { AppComponent } from './app.component';
-import { MyServiceService } from './my-service.service';
+import { AppModule } from './app.module';
+import { SearchComponent } from './search/search.component';
 
 describe('AppComponent', () => {
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [
-        AppComponent
-      ],
-    }).compileComponents();
-  }));
+  // It needs to declare SearchComponent.
+  // It causes NG0304: 'app-card' is not a known element.
+  describe('w/o ng-mocks', () => {
+    beforeEach(waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [
+          AppComponent,
+          SearchComponent
+        ],
+      }).compileComponents();
+    }));
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
+    it('should create the app', () => {
+      const fixture = TestBed.createComponent(AppComponent);
+      const app = fixture.debugElement.componentInstance;
+      expect(app).toBeTruthy();
+      expect(fixture.componentInstance.title).toEqual('ng-mocks-demo-3');
+    });
   });
 
-  it(`should have as title 'ng-mocks-demo'`, () => {
-    const myService = TestBed.inject(MyServiceService)
-    spyOn(myService, 'sum').and.callFake((a, b) => a - b)
+  // so classic
+  // It is calles as 'Classic tools' in https://ng-mocks.sudo.eu/api/MockComponent
+  describe('w/ MockComponent', () => {
+    beforeEach(waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [
+          AppComponent,
+          MockComponent(SearchComponent)
+        ],
+      }).compileComponents();
+    }));
 
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('ng-mocks-demo-3');
+    it('should create the app', () => {
+      const fixture = TestBed.createComponent(AppComponent);
+      const app = fixture.debugElement.componentInstance;
+      expect(app).toBeTruthy();
+      expect(fixture.componentInstance.title).toEqual('ng-mocks-demo-3');
+    });
   });
-});
+
+  // Not bad.
+  describe('w/ ngMocks.guts', () => {
+    beforeEach(waitForAsync(() => {
+      TestBed.configureTestingModule(ngMocks.guts(
+        AppComponent,
+        AppModule
+      )).compileComponents();
+    }));
+
+    it('should create the app', () => {
+      const fixture = TestBed.createComponent(AppComponent);
+      const app = fixture.debugElement.componentInstance;
+      expect(app).toBeTruthy();
+      expect(fixture.componentInstance.title).toEqual('ng-mocks-demo-3');
+    });
+  });
+
+  // Contemporary tools
+  // https://ng-mocks.sudo.eu/api/MockBuilder
+  describe('w/ MockBuilder', () => {
+    beforeEach(waitForAsync(() => {
+      return MockBuilder(AppComponent)
+    }));
+
+    it('should create the app', () => {
+      const fixture = TestBed.createComponent(AppComponent);
+      const app = fixture.debugElement.componentInstance;
+      expect(app).toBeTruthy();
+      expect(fixture.componentInstance.title).toEqual('ng-mocks-demo-3');
+    });
+  });
+})
