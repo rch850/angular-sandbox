@@ -3,5 +3,8 @@
   "workspaces": [
     "packages/*"
   ],
-  "packageManager": "yarn@3.2.1"
+  "packageManager": "yarn@3.2.1",
+  "devDependencies": {
+    "@angular/cli": "^13.3.5"
+  }
 }
