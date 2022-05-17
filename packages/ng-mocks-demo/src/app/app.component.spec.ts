@@ -2,6 +2,7 @@ import { TestBed, waitForAsync } from '@angular/core/testing';
 import { MockBuilder, MockComponent, ngMocks } from 'ng-mocks';
 import { AppComponent } from './app.component';
 import { AppModule } from './app.module';
+import { KakkoPipe } from './kakko.pipe';
 import { SearchComponent } from './search/search.component';
 
 describe('AppComponent', () => {
@@ -12,7 +13,8 @@ describe('AppComponent', () => {
       TestBed.configureTestingModule({
         declarations: [
           AppComponent,
-          SearchComponent
+          SearchComponent,
+          KakkoPipe
         ],
       }).compileComponents();
     }));

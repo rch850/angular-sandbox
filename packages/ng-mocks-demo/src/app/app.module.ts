@@ -5,12 +5,14 @@ import { AppComponent } from './app.component';
 import { CardComponent } from './card/card.component';
 import { SearchComponent } from './search/search.component';
 import { FormsModule } from '@angular/forms';
+import { KakkoPipe } from './kakko.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     CardComponent,
-    SearchComponent
+    SearchComponent,
+    KakkoPipe
   ],
   imports: [
     BrowserModule,
