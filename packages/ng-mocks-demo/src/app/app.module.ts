@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { CardComponent } from './card/card.component';
 import { SearchComponent } from './search/search.component';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from "@angular/common/http";
 import { KakkoPipe } from './kakko.pipe';
 
 @NgModule({
@@ -16,6 +17,7 @@ import { KakkoPipe } from './kakko.pipe';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     FormsModule
   ],
   providers: [],

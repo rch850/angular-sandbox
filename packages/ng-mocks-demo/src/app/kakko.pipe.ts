@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class KakkoPipe implements PipeTransform {
 
   transform(value: string): unknown {
-    return `(${value})`
+    return `(${value ?? ''})`
   }
 
 }

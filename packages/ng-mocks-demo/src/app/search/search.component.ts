@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { of } from 'rxjs';
 import { SearchService } from '../search.service';
 
 @Component({
@@ -7,6 +8,8 @@ import { SearchService } from '../search.service';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
+  result$ = of('');
+
   constructor(
     private searchService: SearchService
   ) { }
@@ -15,6 +18,6 @@ export class SearchComponent implements OnInit {
   }
 
   search(query: string): void {
-    this.searchService.search(query);
+    this.result$ = this.searchService.search(query);
   }
 }

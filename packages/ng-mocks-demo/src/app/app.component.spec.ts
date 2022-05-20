@@ -1,3 +1,4 @@
+import { Component } from '@angular/core';
 import { TestBed, waitForAsync } from '@angular/core/testing';
 import { MockBuilder, MockComponent, ngMocks } from 'ng-mocks';
 import { AppComponent } from './app.component';
@@ -6,14 +7,17 @@ import { KakkoPipe } from './kakko.pipe';
 import { SearchComponent } from './search/search.component';
 
 describe('AppComponent', () => {
-  // It needs to declare SearchComponent.
-  // It causes NG0304: 'app-card' is not a known element.
+  // It needs to stub SearchComponent by myself.
+  // If not, it causes NG0304: 'app-card' is not a known element.
   describe('w/o ng-mocks', () => {
+    @Component({selector: 'app-search'})
+    class SearchComponentStub {}
+
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         declarations: [
           AppComponent,
-          SearchComponent,
+          SearchComponentStub,
           KakkoPipe
         ],
       }).compileComponents();
@@ -67,9 +71,9 @@ describe('AppComponent', () => {
   // Contemporary tools
   // https://ng-mocks.sudo.eu/api/MockBuilder
   describe('w/ MockBuilder', () => {
-    beforeEach(waitForAsync(() => {
-      return MockBuilder(AppComponent)
-    }));
+    beforeEach(() => {
+      return MockBuilder(AppComponent, AppModule)
+    });
 
     it('should create the app', () => {
       const fixture = TestBed.createComponent(AppComponent);

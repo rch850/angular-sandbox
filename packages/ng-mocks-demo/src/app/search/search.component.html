@@ -1,5 +1,6 @@
-<button (click)="search('query')">Search</button>
-<div>{{ 'Search results' | kakko }}</div>
+<input #query>
+<button (click)="search(query.value)">Search</button>
+<div>{{ result$ | async | kakko }}</div>
 <div>
   <app-card></app-card>
 </div>
