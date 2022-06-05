@@ -5,6 +5,6 @@
   ],
   "packageManager": "yarn@3.2.1",
   "devDependencies": {
-    "@angular/cli": "^13.3.5"
+    "@angular/cli": "^14.0.0"
   }
 }
